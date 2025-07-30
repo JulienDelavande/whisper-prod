@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  whisper-vllm:
+    image: mfuntowicz/endpoints-whisper-vllm:v1.0.1-py312
+    ports:
+      - "8000:8000"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+    restart: unless-stopped
+    environment:
+      # Optionnel : cache HF et variables d'optimisation
+      - TRANSFORMERS_CACHE=/data/cache
+    volumes:
+      - whisper-cache:/data/cache
+
+volumes:
+  whisper-cache:

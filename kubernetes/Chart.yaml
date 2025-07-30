@@ -1,0 +1,9 @@
+apiVersion: v2
+name: whisper-prod
+version: 0.1.0
+description: A Helm chart for deploying whisper-prod
+
+type: application
+
+# This is the Helm chart API version. It is version 2 for Helm 3.
+# For Helm 2, use apiVersion: v1.
