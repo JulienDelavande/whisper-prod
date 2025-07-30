@@ -28,11 +28,9 @@ async def transcribe(file: UploadFile = File(...)):
 
 # ---------- DYNAMIC BATCHING ROUTE ----------
 
-# File queue and condition variable
 queue: List[tuple[UploadFile, asyncio.Future]] = []
 condition = asyncio.Condition()
 
-# Hyperparameters
 max_batch_size = 4
 max_wait_time = 0.1  # seconds
 
@@ -72,7 +70,6 @@ async def batch_worker():
                 future.set_exception(e)
 
 
-# Lancer le batch worker au démarrage
 @app.on_event("startup")
 async def startup_event():
     asyncio.create_task(batch_worker())
