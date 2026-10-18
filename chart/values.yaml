@@ -11,7 +11,8 @@ service:
   targetPort: 8000
 
 ingress:
-  enabled: true
+  # No external client: keep the API in-cluster only.
+  enabled: false
   host: whisper.api.delavande.fr
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
